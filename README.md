@@ -1,14 +1,20 @@
 Abrir @Risk y start tools
 
 statistical inference -> hypothesis test mean/ 
+
 standar desviation
+
 Null hypotesis = se da planteada en el ejercicio
 
 Rechazo desde @Risk
+
 p < alfa (La rentabilidad promedio de la empresa es estadisticamente significativa)
+
 No se rechaza\n
+
 p>=alfa (La rentabilidad promedio diaria de empresa es estadisticamente igual a cero)
-------------------------------------------------------------------------------------------------
+
+----------------------------------------------------------------------------------------------
 Excel -> PH para la media
 
 -Media -> +promedio(dato1:ultimoDato)
@@ -29,4 +35,4 @@ interpretacion:
 
 -Se acepta Ho ya que la rentabilidad promedio es estadisticamente igual a cero
 
---------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
