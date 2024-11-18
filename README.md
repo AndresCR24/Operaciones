@@ -17,23 +17,23 @@ p>=alfa (La rentabilidad promedio diaria de empresa es estadisticamente igual a 
 ----------------------------------------------------------------------------------------------
 Excel -> PH para la media
 
--Media -> +promedio(dato1:ultimoDato)
+*Media -> +promedio(dato1:ultimoDato)
 
--Desviacion -> +desvEst.M(dato1:ultimoDato)
+*Desviacion -> +desvEst.M(dato1:ultimoDato)
 
--ValorCrit -> +distr.t.inv(alpha;n-1)
+*ValorCrit -> +distr.t.inv(alpha;n-1)
 
--Estadistico de prueba -> +(Media-Ha)*raiz(n)/desvEstan
+*Estadistico de prueba -> +(Media-Ha)*raiz(n)/desvEstan
 
--Decision -> +Si(ABS(estadistico)>valorCrit;"Se rechaza Ho; "No se rechaza Ho)
+*Decision -> +Si(ABS(estadistico)>valorCrit;"Se rechaza Ho; "No se rechaza Ho)
 
--ValorP -> +2*distr.t.cd(abs(estadistico);n-1)
+*ValorP -> +2*distr.t.cd(abs(estadistico);n-1)
 
 interpretacion:
 
--Se rechaza Ho ya que la rentabilidad promedio diaria es diferente de cero
+*Se rechaza Ho ya que la rentabilidad promedio diaria es diferente de cero
 
--Se acepta Ho ya que la rentabilidad promedio es estadisticamente igual a cero
+*Se acepta Ho ya que la rentabilidad promedio es estadisticamente igual a cero
 
 ------------------------------------------------------------------------------------------------
 
@@ -57,11 +57,11 @@ Ej con menor de 1.6%
 
 Ho: Sigma = 1.6%  Ha: Sigma < 1.6%
 
--chi(1-alpha,n-1) -> +inv.chicuad.cd(1-alpha; n-1)
+*chi(1-alpha,n-1) -> +inv.chicuad.cd(1-alpha; n-1)
 
--Estadistico -> +((n-1)*Ha^2/desvEstan^2)
+*Estadistico -> +((n-1)*Ha^2/desvEstan^2)
 
--Desicion
+*Desicion
 
 +si(estadistico<chi(1-alpha;n-1); "Se rechaza Ho"; "No se rechaza Ho"
 
@@ -83,11 +83,11 @@ Ej Ho: Sigma empresa1 = Sigma empresa2
 
 Se usa alpha/2 cuando es diferente (!=)
 
--F(alpha/2, n-1, m-1) -> distr.f.inv(alpha/2;n-1;m-1)
+*F(alpha/2, n-1, m-1) -> distr.f.inv(alpha/2;n-1;m-1)
 
--F(1-alpha,n-1,m-1) -> distr.f.inv(1-alpha;n1-1;n2-1)
+*F(1-alpha,n-1,m-1) -> distr.f.inv(1-alpha;n1-1;n2-1)
 
-Estadistico de prueba -> DesEs^2Emperesa1/DesEst^2Empresa2
+*Estadistico de prueba -> DesEs^2Emperesa1/DesEst^2Empresa2
 
 Desicion:
 
