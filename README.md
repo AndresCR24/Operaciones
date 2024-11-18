@@ -68,8 +68,39 @@ Ho: Sigma = 1.6%  Ha: Sigma < 1.6%
 interpretacion:
 
 Se rechaza Ho:
+
 La volatilidad promedio de empresa es menor o mayor o diferente que el valor de Ha(1.6)
+
 se acepta Ho:
+
 No se tiene suficiente evidencia estadistica
 
 ------------------------------------------------------------------------------------------------
+
+PH razon de varianzas
+
+Ej Ho: Sigma empresa1 = Sigma empresa2
+
+Se usa alpha/2 cuando es diferente (!=)
+
+-F(alpha/2, n-1, m-1) -> distr.f.inv(alpha/2;n-1;m-1)
+
+-F(1-alpha,n-1,m-1) -> distr.f.inv(1-alpha;n1-1;n2-1)
+
+Estadistico de prueba -> DesEs^2Emperesa1/DesEst^2Empresa2
+
+Desicion:
+
++Si((estadistico<f(1-alpha);"Se rechaza Ho";"No se rechaza Ho)
+
+Si es diferente (!=):
+
++Si((estadistico<f(alpha/2);"Se rechaza Ho";"No se rechaza Ho")
+
+Interpretacion:
+
+La volatilidad de la empresa1 es menor que volatilidad empresa2
+
+------------------------------------------------------------------------------------------------
+
+PH para diferencia de medias
