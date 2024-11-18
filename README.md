@@ -36,3 +36,40 @@ interpretacion:
 -Se acepta Ho ya que la rentabilidad promedio es estadisticamente igual a cero
 
 ------------------------------------------------------------------------------------------------
+
+PH volatilidad
+
+Nota:
+
+Menor: Ho: Sigma = 1.6%  Ha: Sigma < 1.6%
+
+Mayor: Ho: Sigma = 1.6%  Ha: Sigma > 1.6%
+
+diferente: Ho: Sigma = 1.6%  Ha: Sigma != 1.6%
+
+si es menor -> chi(1-aplha)
+
+si es mayor -> chi(alpha)
+
+si es diferente -> si estadistico>chi(alpha/2) o estadistico<chi(1-alpha/2)
+
+Ej con menor de 1.6%
+
+Ho: Sigma = 1.6%  Ha: Sigma < 1.6%
+
+-chi(1-alpha,n-1) -> +inv.chicuad.cd(1-alpha; n-1)
+
+-Estadistico -> +((n-1)*Ha^2/desvEstan^2)
+
+-Desicion
+
++si(estadistico<chi(1-alpha;n-1); "Se rechaza Ho"; "No se rechaza Ho"
+
+interpretacion:
+
+Se rechaza Ho:
+La volatilidad promedio de empresa es menor o mayor o diferente que el valor de Ha(1.6)
+se acepta Ho:
+No se tiene suficiente evidencia estadistica
+
+------------------------------------------------------------------------------------------------
