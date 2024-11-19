@@ -10,7 +10,7 @@ Rechazo desde @Risk
 
 p < alfa (La rentabilidad promedio de la empresa es estadisticamente significativa)
 
-No se rechaza\n
+No se rechaza
 
 p>=alfa (La rentabilidad promedio diaria de empresa es estadisticamente igual a cero)
 
@@ -27,7 +27,7 @@ Excel -> PH para la media
 
 *Decision -> +Si(ABS(estadistico)>valorCrit;"Se rechaza Ho; "No se rechaza Ho)
 
-*ValorP -> +2*distr.t.cd(abs(estadistico);n-1)
+*ValorP -> +2 * distr.t.cd(abs(estadistico);n-1)
 
 interpretacion:
 
@@ -203,4 +203,190 @@ si LS < 0 u1<u2
 si LI < 0 y LS > 0   u1 = u2  estadisticamente igual
 
 ------------------------------------------------------------------------------------------------
+
+*Nota: si los datos son discretos se elige chi y no kolmogorov (discreto -> Numero ocurrencias)
+
+Bondad de ajuste
+
+Abrir risk y abrir starTools
+
+Verificar que este el simbolo decimal este activiado para que funcione el risk
+*Opciones -> avanzadas -> Usar separadores del sistema
+
+*Señalar todo el vector de datos
+
+entrar en @Riks -> Fit -> fit -> Data - continuos -> Bootstrap - activar -> Results - kolmogorov
+
+luego seleccionar la distribucion que mas se ajuste a los datos (ej: Laplace, Logistic etc)
+
+entrar a statical summary (una  malla en la parte de abajo) buscar ahi el kolmogorov y fijarse en el p-value
+con ese p-value se toma la decision.
+
+Ho: Empresa siguen una distribucion (la que se tome la decision)
+Ha: Empresa no siguen una distribucion (la que se tome en la decision)
+
+ahora el valor - p se compara con alfa(que lo da el probelma)
+
+si se obtiene que 
+
+valor-p >= alfa -> No se rechaza la hipotesis nula Ho por lo tanto los retornos diarios de le empresa
+siguen una distribucion (la que se tomo la decision)
+
+Valor-p < alfa -> se rechaza la hipotesis nula (Ho) por lo tanto la empresa no siguen una 
+distribucion(La que se quiere evaluar)
+
+*Luego de elegir una distribucion volvemos al grafico.
+
+Write to excel -> next -> elegir la celda -> colocarle el nombre de la distribucion a la celda
+
+*Ahora hace falta encontrar PT(es el ultimo precio empresa) y P(T+1)
+-p(T+1) -> +PT * EXP(DistribucionEncontrada)
+
+*Ahora hubicados en P(T+1) abrir @Risk
+
+Output-> Define
+
+Luego en el menu de arriba en iterations -> 10.000
+
+Resivsar en settigns-> General -activar montecarlo -> sampling - multiple simulatuons (Different seeds)
+
+*Luego darle simulate -> Start simulation
+
+*Luego interpretar los resultados de la grafica (con una confianza del x% se espera que este 
+entre xvalor y xvalor)
+
+*Para encontrar un percentil (solo se modifican los valores que estan en % en la grafica del risk)
+
+interpretacion pertentil(ej 92):
+
+Con una confianza del 8% se espera que el precio de la empresa este por encima de 239
+
+------------------------------------------------------------------------------------------------
+Regression Lineal.
+Ej:
+
+y = consumo de cafe (medido en tazas diarias por persona)
+
+x = precio del cafe en dolares
+
+B1 = por cada dolar que se incremente el precio del cafe se espera que el consumo disminuya en x tazas
+diarias
+
+B0 = el consumo promedio de cafe que no depende del precio es de (valor sin la x) tazas diarias por persona
+
+------------------------------------------------------------------------------------------------
+
+Para regresion lineal
+
+Vamos a Datos -> Analisis de datos -> Resion -Tomamos todos los valores de Y- -Tomamos todos los valores de x
+
+Si tomamos los valores de x y de y con los nombres activamos rotulos, tambien activar
+
+Residuos y residuos estandares 
+
+el que esta asociado a la intercepcion es Bo y el que esta asociado al otro es B1
+
+------------------------------------------------------------------------------------------------
+Ej: Gastos semanales en cientos de dolares en publicidad (x)
+
+Ventas semanales en cientos de dolares(Y)
+
+*Interpretaciones 
+
+Bo -> es en coeficientes el que esta en intercepcion
+
+B1 -> el otro el que va en x
+
+*y = Bo + B1xi -> asi se hace el modelo
+
+por cada tales dolares en (lo que estan en la columna x en los datos) se espera que (el dato 
+de la columna y)
+
+------------------------------------------------------------------------------------------------
+
+Ic en regrecion ej con 95%
+
+si LI < 0 y LS > 0 -> esto indica que la variable xi no es significativa en el modelo
+
+interpretacion.
+
+por cada 100 dolares adicionales de gastos semanales en publicidad se espera que con una confianza
+del 95% que las ventas semanales promedio se encuentren entre 9.19(LS) y 13.75(LI)
+
+Limite estan en donde dice:
+
+inferior y superior en la segunda fila la que esta abajo de intercepcion
+
+------------------------------------------------------------------------------------------------
+Prueba hipotesis pendiente.
+
+Hay dos casos 
+
+caso1:
+
+Ho: B1 = 0    ha B1!= 0  -> Rechazar Ho indica que la variable x tiene un efecto lineal sobre las variaciones de yi
+
+No rechazar Ho indica que la variable xi no es significativa par el modelo
+
+Decision:
+
+Se rechaza si abs(T) > t(alpha/2, n-2) o tambien si valor-p < alpha
+
+caso 2:
+
+Ho: B1 = 1     Ha: B1 != 1 -> Rechazar Ho significa que no existe una relacion uno a uno entre x e y
+
+No rechazar indica que existe una relacion uno a uno entre x e y
+
+Interpretacion:
+
+*En el mismo cuadro en excel fijarse en el estadistico T segunda fila
+
+sacar el t(alpha/2, n-2) -> +distr.t.inv(0,05;n-2)
+
+comprar T>t(alpha/2, n-2) se rechaza entonces los gastos semanales tienen un efecto lineal sobre las variaciones que hay en las ventas
+
+Tambien se puede mirar el valor-p en la misma fila
+
+valor-p < alpha se rechaza -> en el ejemplo 0 < 0.05
+
+------------------------------------------------------------------------------------------------
+
+Probar si el modelo lineal es significativo (alpha dado por el problema)
+
+Se rechaza Ho si F> f(alpha, 1, n-2)
+
+En analisis de varianza en excel
+
+F -> este valor esta solo sin nada mas en la columna
+
+calcular el f(alpha,1, n-2) -> +distr.f.inv(alpha, regresion, residuos)
+
+Si se rechaza:
+
+F es mayor que f entonces se rechaza Ho por lo tanto el modelo lineal es significativo
+
+------------------------------------------------------------------------------------------------
+
+Calcule el coeficiente de determinacion y el coeficiente de correlacion:
+
+R^2 -> se mira en el resumen (cambiar el valor a porcentual)
+
+Interpretacion:
+
+La variabilidad que hay en las ventas semanales son explicadas en un 79%(R^2) por la variabilidad que hay en
+en los gastos semanales en publicidad
+
+Rxy -> coeficiente de correlacion multiple en excel
+
+Existe una relacion lineal fuerte entre los gastos y las ventas semanales 
+
+------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
 
