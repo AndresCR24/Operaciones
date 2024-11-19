@@ -383,6 +383,37 @@ Existe una relacion lineal fuerte entre los gastos y las ventas semanales
 
 ------------------------------------------------------------------------------------------------
 
+Calcule y interprete un intervalo de confianza del 95% - Pronosticos
+
+LI < UYo|Xo < LS  -> Uyo|Xo el pronostico promedio de la variable Yi
+
+Xo -> valor que da el problema por ejemplo 7820 si el enunciado dice cientos seria 7820/100
+
+Beta0 -> intercepcion
+
+Beta1 -> el de abajo de intercepcion
+
+Yo ajustado -> +Bo+B1 * Xo
+
+alpha
+
+n -> observaciones
+
+t(alpha/2;n-2) -> distr.t.inv(alpha/2; n-2)
+
+s -> error tipico
+
+promedio de x -> +promedio(todo el vector)
+
+sxx -> +suma.cuadrados(TOdo el vector ejex) - n*orimediox
+
+Margen error -> +t(alpha/2; n-2) * s * raiz((1/n) + (xo-promediox)^2/sxx)
+
+LI -> +yo ajustado - margen error
+
+ls -> +yo ajustado + margen error
+
+se espera con una confianza del 95% que las ventas se encuentren entre LI y LS
 
 
 
